@@ -2,7 +2,10 @@
   "compilerOptions": {
     "composite": true,
     "module": "ESNext",
-    "moduleResolution": "Node"
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "Node",
+    "types": ["vitest/globals"] // Optional: Add this if needed for Node-specific tests
   },
   "include": ["vite.config.ts"]
 }

@@ -7,9 +7,11 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "test": "vitest --ui",
+    "test-no-ui": "vitest",
     "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix",
     "lint:format": "prettier  --log-level warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" ",
     "lint": "npm run lint:format && npm run lint:fix ",
+    "grade": "npm run build && npm run test-no-ui",
     "type-check": "tsc",
     "prepare": "husky"
   },
@@ -18,6 +20,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
