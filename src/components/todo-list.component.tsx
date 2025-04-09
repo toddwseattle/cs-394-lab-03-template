@@ -10,6 +10,25 @@ interface TodoListProps {
 
 type FilterType = 'all' | 'open' | 'completed';
 
+export const fetchTodos = async (setTodos, setFilteredTodos, setLoading, setError) => {
+  try {
+    setLoading(true);
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    setTodos(data);
+    setFilteredTodos(data);
+    setLoading(false);
+  } catch (err) {
+    setError(err instanceof Error ? err.message : 'An unknown error occurred');
+    setLoading(false);
+  }
+};
+
 export const TodoList: React.FC<TodoListProps> = ({ onSelectTodo }) => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
@@ -18,26 +37,7 @@ export const TodoList: React.FC<TodoListProps> = ({ onSelectTodo }) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchTodos = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch('https://jsonplaceholder.typicode.com/todos');
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        setTodos(data);
-        setFilteredTodos(data);
-        setLoading(false);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An unknown error occurred');
-        setLoading(false);
-      }
-    };
-
-    fetchTodos();
+    fetchTodos(setTodos, setFilteredTodos, setLoading, setError);
   }, []); // Empty dependency array means this effect runs only once on mount
 
   // Apply filter when either todos or activeFilter changes
