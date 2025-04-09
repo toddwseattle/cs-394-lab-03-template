@@ -43,31 +43,18 @@ In this lab, you will develop a React application in TypeScript that interacts w
 ### Setup Instructions
 
 1. Accept the GitHub Classroom assignment link provided by your instructor
-2. Clone the repository to your local machine:
-
-   ```bash
-   git clone [repository-url]
-   cd cs394-useeffect-lab
-   ```
-
-3. Install the dependencies:
-
+2. Clone the repository to your local machine using the instructions from github classroom.
+3. Open the project in Visual Studio Code
+4. Install the required dependencies by running:
    ```bash
    npm install
    ```
-
-4. Open the project in Visual Studio Code:
-
+5. run tests. most will fail
    ```bash
-   code .
+   npm test
    ```
-
-5. Start the development server:
-
-   ```bash
-   npm run dev
-   ```
-
+   This will run the test suite and show you which tests are failing. You can use this information to guide your implementation. I recommend starting with todo-list.test.tsx before moving on to todo-detail.test.tsx.
+   implement the fetch
 6. To check if your solution will pass the automated grading, run:
    ```bash
    npm run grade
@@ -80,6 +67,8 @@ You'll be implementing two main components:
 ### 1. TodoList Component
 
 Create a component that fetches and displays all todos from the API endpoint: https://jsonplaceholder.typicode.com/todos
+
+you can open this url in a browser to see the data structure.
 
 Requirements:
 

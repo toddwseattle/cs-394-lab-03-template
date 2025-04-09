@@ -10,7 +10,29 @@ interface TodoListProps {
 
 type FilterType = 'all' | 'open' | 'completed';
 
-export const fetchTodos = async (setTodos, setFilteredTodos, setLoading, setError) => {
+interface FetchTodosParams {
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  setFilteredTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setError: React.Dispatch<React.SetStateAction<string | null>>;
+}
+/**
+ * fetchTodos function fetches todos from the API and updates the state.
+ * @param setTodos - React setState Function to set the todos state.
+ * @param setFilteredTodos - React setState Function to set the filtered todos state.
+ * @param setLoading - react setState Function to set the loading state.
+ * @param setError - react setState Function to set the error state.
+ *
+ * @returns {Promise<void>} - A promise that resolves when the todos are fetched and state is updated.
+ * wraps the fetch API call in a try-catch block to handle errors gracefully and update the loading and error states accordingly.
+ * The function uses async/await syntax to handle asynchronous operations, making the code cleaner and easier to read.
+ */
+export const fetchTodos = async ({
+  setTodos,
+  setFilteredTodos,
+  setLoading,
+  setError,
+}: FetchTodosParams): Promise<void> => {
   try {
     setLoading(true);
     const response = await fetch('https://jsonplaceholder.typicode.com/todos');
@@ -19,7 +41,7 @@ export const fetchTodos = async (setTodos, setFilteredTodos, setLoading, setErro
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    const data = await response.json();
+    const data: Todo[] = await response.json();
     setTodos(data);
     setFilteredTodos(data);
     setLoading(false);
@@ -37,7 +59,7 @@ export const TodoList: React.FC<TodoListProps> = ({ onSelectTodo }) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchTodos(setTodos, setFilteredTodos, setLoading, setError);
+    fetchTodos({ setTodos, setFilteredTodos, setLoading, setError });
   }, []); // Empty dependency array means this effect runs only once on mount
 
   // Apply filter when either todos or activeFilter changes

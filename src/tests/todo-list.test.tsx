@@ -64,7 +64,12 @@ describe('fetchTodos function', () => {
       json: async () => mockTodos,
     });
 
-    await fetchTodos(mockSetTodos, mockSetFilteredTodos, mockSetLoading, mockSetError);
+    await fetchTodos({
+      setTodos: mockSetTodos,
+      setFilteredTodos: mockSetFilteredTodos,
+      setLoading: mockSetLoading,
+      setError: mockSetError,
+    });
 
     expect(mockSetLoading).toHaveBeenCalledWith(true);
     expect(mockSetTodos).toHaveBeenCalledWith(mockTodos);
@@ -79,7 +84,12 @@ describe('fetchTodos function', () => {
       status: 404,
     });
 
-    await fetchTodos(mockSetTodos, mockSetFilteredTodos, mockSetLoading, mockSetError);
+    await fetchTodos({
+      setTodos: mockSetTodos,
+      setFilteredTodos: mockSetFilteredTodos,
+      setLoading: mockSetLoading,
+      setError: mockSetError,
+    });
 
     expect(mockSetLoading).toHaveBeenCalledWith(true);
     expect(mockSetError).toHaveBeenCalledWith('HTTP error! Status: 404');
@@ -93,7 +103,12 @@ describe('fetchTodos function', () => {
       new Error('Network error'),
     );
 
-    await fetchTodos(mockSetTodos, mockSetFilteredTodos, mockSetLoading, mockSetError);
+    await fetchTodos({
+      setTodos: mockSetTodos,
+      setFilteredTodos: mockSetFilteredTodos,
+      setLoading: mockSetLoading,
+      setError: mockSetError,
+    });
 
     expect(mockSetLoading).toHaveBeenCalledWith(true);
     expect(mockSetError).toHaveBeenCalledWith('Network error');
