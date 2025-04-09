@@ -1,56 +1,90 @@
-# Vite + React + Typescript + Eslint + Prettier: an example repo Updated for 2025!
+# CS 394 Lab - useEffect
 
-A starter for React with Typescript with the fast Vite, Vitest and all static code testing with Eslint and formatting with Prettier. As of this writing updated to React 19; and the latest versions of all tools as of March 2025. This was built for use by the [Northwestern University CS394 Class taught by Todd Warren](https://toddwseattle.com/blog/2025-02-05-CS394-2025-Spring-Software-Engineering-Course/)
+This project is part of the CS 394 course and focuses on using the `useEffect` React hook to interact with REST APIs. For detailed student instructions, refer to [Student Instructions](#file:student-readme.md).
 
-Once up and running it looks like this:
+## Setup
 
-![Vite + React + Typescript + Vitest + Eslint + Prettier](/resources/2025-screenshot.png)
+To get started with the project, follow these steps:
 
-You can find more about these in the following links: [Vite](https://vitejs.dev), [React](https://reactjs.org/), [Typescript](https://www.typescriptlang.org/), [Eslint](https://eslint.org/), [Prettier](https://prettier.io/), [Vitest](https://vitest.dev/)
+1. Clone the repository to your local machine.
+2. Install the required dependencies by running:
+   ```bash
+   npm install
+   ```
 
-## Installation
+````markdown
+# CS 394 Lab - useEffect
 
-- Make sure you are running node 20 or later
-- npm 10.x or higher (comes with Node.js 20)
+This project is part of the CS 394 course and focuses on using the `useEffect` React hook to interact with REST APIs. For detailed student instructions, refer to [Student Instructions](#file:student-readme.md).
+
+## Setup
+
+To get started with the project, follow these steps:
+
+1. Clone the repository to your local machine.
+2. Install the required dependencies by running:
+   ```bash
+   npm install
+   ```
+````
+
+## Commands
+
+The following commands are defined in the [`package.json`](#file:package.json):
+
+- **`npm run dev`**: Starts the development server using Vite.
+- **`npm run build`**: Builds the project for production using TypeScript and Vite.
+- **`npm run serve`**: Previews the production build.
+- **`npm test`**: Runs the test suite with a UI using Vitest.
+- **`npm run test-no-ui`**: Runs the test suite without the UI.
+- **`npm run lint:fix`**: Fixes linting issues in the source files.
+- **`npm run lint:format`**: Formats the codebase using Prettier.
+- **`npm run lint`**: Runs both linting and formatting commands.
+- **`npm run grade`**: Builds the project and runs the test suite for grading.
+- **`npm run type-check`**: Checks TypeScript types in the project.
+
+## File Structure
+
+The project is organized as follows:
+
+### Root Files
+
+None of these files should be modified
+
+- **`README.md`**: This file, providing an overview of the project.
+- **`student-readme.md`**: Detailed instructions for students working on the lab.
+- **`package.json`**: Defines project dependencies and scripts.
+- **`.gitignore`**: Specifies files and directories to ignore in Git.
+- **`.prettierrc.cjs`**: Configuration for Prettier code formatting.
+- **`.eslint.config.cjs`**: Configuration for ESLint linting rules.
+- **`.lintstagedrc.json`**: Configuration for lint-staged to run linters on staged files.
+- **`.husky/pre-commit`**: Pre-commit hook to run lint-staged.
+- **`vite.config.ts`**: Configuration for Vite.
+- **`tsconfig.json`**: TypeScript configuration for the project.
+- **`tsconfig.node.json`**: TypeScript configuration for Node-specific files.
+- **`vitest.setup.ts`**: Setup file for Vitest testing.
+
+### `src` Folder
+
+The `src` folder contains the main application code:
+
+- **`App.tsx`**: The main application component that integrates the `TodoList` and `TodoDetail` components.
+- **`App.css`**: Styles for the main application.
+- **`main.tsx`**: Entry point for the React application. **do not modify**
+- **`index.css`**: Global styles for the application.
+- **`vite-env.d.ts`**: TypeScript definitions for Vite.
+- **`components/`**: Contains React component skeletons:
+  - **`todo-list.component.tsx`**: Displays a list of todos with filtering functionality.
+  - **`todo-detail.component.tsx`**: Displays details of a single todo item.
+- **`types/`**: Contains TypeScript type definitions:
+  - **`todo-type.ts`**: Defines the `Todo` interface.
+- **`tests/`**: Contains test files **do not modify**:
+  - **`todo-list.test.tsx`**: Tests for the `TodoList` component.
+  - **`todo-detail.test.tsx`**: Tests for the `TodoDetail` component.
+- **`favicon/`**: Contains favicon assets for the application.
+
+For more details on the file structure, refer to [#folder:src](#folder:src).
 
 ```
-node --version
-```
-
-Clone the repo and run `npm install`
-
-or preferred Run command
 
 ```
-npx degit toddwseattle/pretty-vitest-react-ts-template project-name
-```
-
-this will create a clean version of the template in the `project-name` folder. omit project-name to create in the current directory. You will then need to initialize git yourself and push to github.
-
-## Start
-
-Install packages: `npm run dev`
-
-## Steps in Vscode
-
-#### (works better with this template)
-
-1. Install Eslint and prettier extension for vs code (separate extensions; not the combined one)
-2. Make Sure Both are enabled
-3. Make sure all packages are Installed. (Mostly Eslint and prettier in node_modules)
-4. Enable formatOnSave of vs code
-5. Open a .tsx file and check if the bottom right corners of vs code have Eslint and Prettier with a double tick
-
-![Screenshot (253)_LI](https://user-images.githubusercontent.com/52120562/162486286-7383a737-d555-4f9b-a4dd-c4a81deb7b96.jpg)
-
-If Everything is Good Then It Should Work, but let me new if something else happens.
-
-## pre-commit hook to lint files with eslint/prettier
-
-In this template, when you commit via `git commit` a [pre-commit hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) runs the command `npm run lint`, so that eslint and prettier are run and modify the files to conform. Consequently, you may end up with new changes after you commit! The easiest way to make sure you get a clean commit is to `npm run lint` before you commit.
-
-The npm command used in pre-commit is in the package.json key ` "pre-commit": "lint"`. Change or remove this as you see fit for your project.
-
-## Authorship and acknowledgments
-
-This was based on a [starter made with ❤️ by theSwordBreaker](https://github.com/TheSwordBreaker/vite-reactts-eslint-prettier). Thanks theSwordBreaker for the starter and vscode screenshots! It's been enhanced with vitest by toddwseattle using the best of the [js react starter](https://github.com/criesbeck/react-vitest) from [c-riesbeck](https://users.cs.northwestern.edu/~riesbeck/) for use by Northwestern University CS 394 students and others who like consistent looking typescript code.
