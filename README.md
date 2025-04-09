@@ -12,22 +12,6 @@ To get started with the project, follow these steps:
    npm install
    ```
 
-````markdown
-# CS 394 Lab - useEffect
-
-This project is part of the CS 394 course and focuses on using the `useEffect` React hook to interact with REST APIs. For detailed student instructions, refer to [Student Instructions](#file:student-readme.md).
-
-## Setup
-
-To get started with the project, follow these steps:
-
-1. Clone the repository to your local machine.
-2. Install the required dependencies by running:
-   ```bash
-   npm install
-   ```
-````
-
 ## Commands
 
 The following commands are defined in the [`package.json`](#file:package.json):
